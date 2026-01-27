@@ -6,8 +6,8 @@ class Movies extends Equatable {
   final String backdropPath;
   final List<int> genreIds;
   final String overview;
-  final String voteAverage;
-  final double releaseDate;
+  final double voteAverage;
+  final String releaseDate;
   Movies({
     required this.id,
     required this.title,

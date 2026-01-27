@@ -1,4 +1,3 @@
-import 'dart:nativewrappers/_internal/vm/bin/vmservice_io.dart';
 
 import 'package:dartz/dartz.dart';
 import 'package:movies_app/core/error/exception.dart';
