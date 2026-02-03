@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:movies_app/core/error/exception.dart';
 import 'package:movies_app/core/error/failure.dart';
@@ -11,7 +10,7 @@ class MoviesRepository extends BaseMoviesRepository {
   MoviesRepository({required this.remoteDataSource});
   @override
   Future<Either<Failure, List<Movies>>> getNowPlaying() async {
-    final result = await remoteDataSource.GetNowPlayingMovies();
+    final result = await remoteDataSource.getNowPlayingMovies();
     try {
       return Right(result);
     } on ServerException catch (failure) {
@@ -21,7 +20,7 @@ class MoviesRepository extends BaseMoviesRepository {
 
   @override
   Future<Either<Failure, List<Movies>>> getPopular() async {
-    final result = await remoteDataSource.GetPopularMovies();
+    final result = await remoteDataSource.getPopularMovies();
     try {
       return Right(result);
     } on ServerException catch (failure) {
@@ -31,7 +30,7 @@ class MoviesRepository extends BaseMoviesRepository {
 
   @override
   Future<Either<Failure, List<Movies>>> getTopRated() async {
-    final result = await remoteDataSource.GetTopRatedMovies();
+    final result = await remoteDataSource.getTopRatedMovies();
     try {
       return Right(result);
     } on ServerException catch (failure) {

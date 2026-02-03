@@ -4,7 +4,7 @@ import 'package:movies_app/movies/domain/entities/movies.dart';
 
 abstract class BaseMoviesRepository {
   // ignore: avoid_types_as_parameter_names
- Future<Either<Failure,List<Movies>>> getNowPlaying();
-Future<Either<Failure,List<Movies>>> getPopular();
-  Future<Either<Failure,List<Movies>>> getTopRated();
+  Future<Either<Failure, List<Movies>>> getNowPlaying();
+  Future<Either<Failure, List<Movies>>> getPopular();
+  Future<Either<Failure, List<Movies>>> getTopRated();
 }
