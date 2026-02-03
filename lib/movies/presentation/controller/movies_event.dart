@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class MoviesEvent extends Equatable {
   MoviesEvent();
