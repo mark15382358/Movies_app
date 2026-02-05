@@ -1,10 +1,7 @@
-import 'package:animate_do/animate_do.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/utils/service_locator.dart';
-
 import 'package:movies_app/movies/presentation/components/now_playing_component.dart';
 import 'package:movies_app/movies/presentation/components/popular_component.dart';
 import 'package:movies_app/movies/presentation/components/top_rated_component.dart';
@@ -16,9 +13,11 @@ class MainMoviesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ServiceLocator().init();
     return BlocProvider(
-      create: (context) => sl<MoviesBloc>()..add(GetNowPlayingMoviesEvent()),
+      create: (context) => sl<MoviesBloc>()
+        ..add(GetNowPlayingMoviesEvent())
+        ..add(GetTopRatedMoviesEvent())
+        ..add(GetPopularMoviesEvent()),
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: SingleChildScrollView(

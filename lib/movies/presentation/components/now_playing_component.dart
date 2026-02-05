@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/utils/constant.dart';
-import 'package:movies_app/core/utils/dummy.dart';
 import 'package:movies_app/core/utils/enums.dart';
 import 'package:movies_app/movies/presentation/controller/movies_bloc.dart';
 import 'package:movies_app/movies/presentation/controller/movies_state.dart';
@@ -109,7 +108,7 @@ class NowPlayingComponent extends StatelessWidget {
                 }).toList(),
               ),
             );
-          default:
+          case RequestState.error:
             return Center(child: Text("${state.nowPlayingMessage}"));
         }
       },

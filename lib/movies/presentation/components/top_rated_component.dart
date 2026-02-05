@@ -1,8 +1,13 @@
 import 'package:animate_do/animate_do.dart' show FadeIn;
-import 'package:cached_network_image/cached_network_image.dart' show CachedNetworkImage;
+import 'package:cached_network_image/cached_network_image.dart'
+    show CachedNetworkImage;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/core/utils/dummy.dart';
+import 'package:movies_app/core/utils/enums.dart';
+import 'package:movies_app/movies/presentation/controller/movies_bloc.dart';
+import 'package:movies_app/movies/presentation/controller/movies_state.dart';
 import 'package:shimmer/shimmer.dart';
 
 class TopRatedComponent extends StatelessWidget {
@@ -10,7 +15,22 @@ class TopRatedComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   FadeIn(
+    return BlocBuilder<MoviesBloc, MoviesState>(
+      builder: (context, state) {
+        switch (state.topRatedMoviesState) {
+          case RequestState.loading:
+            return Center(
+              child: Container(
+
+                child: CircularProgressIndicator(),
+              ),
+            );
+          case RequestState.error:
+            return Center(
+              child: Container(height: 170.0, child: Text("Error")),
+            );
+          case RequestState.loaded:
+            return FadeIn(
               duration: const Duration(milliseconds: 500),
               child: SizedBox(
                 height: 170.0,
@@ -18,9 +38,9 @@ class TopRatedComponent extends StatelessWidget {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  itemCount: moviesList.length,
+                  itemCount: state.topRatedMovies.length,
                   itemBuilder: (context, index) {
-                    final movie = moviesList[index];
+                    final movie = state.topRatedMovies[index];
                     return Container(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
@@ -34,9 +54,7 @@ class TopRatedComponent extends StatelessWidget {
                           child: CachedNetworkImage(
                             width: 120.0,
                             fit: BoxFit.cover,
-                            imageUrl: AppConstance.imageUrl(
-                              movie.backdropPath!,
-                            ),
+                            imageUrl: AppConstance.imageUrl(movie.backdropPath),
                             placeholder: (context, url) => Shimmer.fromColors(
                               baseColor: Colors.grey[850]!,
                               highlightColor: Colors.grey[800]!,
@@ -50,7 +68,7 @@ class TopRatedComponent extends StatelessWidget {
                               ),
                             ),
                             errorWidget: (context, url, error) =>
-                                const Icon(Icons.error,color: Colors.white),
+                                const Icon(Icons.error, color: Colors.white),
                           ),
                         ),
                       ),
@@ -59,5 +77,8 @@ class TopRatedComponent extends StatelessWidget {
                 ),
               ),
             );
+        }
+      },
+    );
   }
 }
