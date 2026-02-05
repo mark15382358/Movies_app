@@ -17,7 +17,6 @@ class NowPlayingComponent extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.nowPlayingState != current.nowPlayingState,
       builder: (context, state) {
-        print("BlocBuilder NowPlaying");
         switch (state.nowPlayingState) {
           case RequestState.loading:
             return Container(

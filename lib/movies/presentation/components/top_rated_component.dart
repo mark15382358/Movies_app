@@ -16,10 +16,9 @@ class TopRatedComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
-      buildWhen: (previous, current) => previous.topRatedMoviesState!=current.topRatedMoviesState,
+      buildWhen: (previous, current) =>
+          previous.topRatedMoviesState != current.topRatedMoviesState,
       builder: (context, state) {
-        print("BlocBuilder TopRatedPlaying");
-
         switch (state.topRatedMoviesState) {
           case RequestState.loading:
             return Center(child: Container(child: CircularProgressIndicator()));
