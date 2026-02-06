@@ -4,8 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/core/utils/constant.dart';
-import 'package:movies_app/core/utils/dummy.dart';
 import 'package:movies_app/core/utils/enums.dart';
+import 'package:movies_app/movie_detail_screen.dart';
 import 'package:movies_app/movies/presentation/controller/movies_bloc.dart';
 import 'package:movies_app/movies/presentation/controller/movies_state.dart';
 import 'package:shimmer/shimmer.dart';
@@ -42,7 +42,13 @@ class TopRatedComponent extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: InkWell(
                         onTap: () {
-                          /// TODO : NAVIGATE TO  MOVIE DETAILS
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  MovieDetailScreen(id: movie.id),
+                            ),
+                          );
                         },
                         child: ClipRRect(
                           borderRadius: const BorderRadius.all(
